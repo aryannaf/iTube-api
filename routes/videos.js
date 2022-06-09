@@ -6,10 +6,18 @@ const videosFile = fs.readFileSync('./data/videos.json');
 
 const videos = JSON.parse(videosFile);
 
-router.get("/videos", (req, res) => {
+router.get("/", (req, res) => {
     
+    const listedVideos = videos.map((video) => {
+        return {
+            title: video.title,
+            image: video.image,
+            channel: video.channel,
+            id: video.id
+        }
+    })
 
-    res.json(videos);
+    res.json(listedVideos);
 })
 
 router.post("/videos", (req, res) => {
@@ -26,11 +34,15 @@ router.post("/videos", (req, res) => {
 })
 
 
-router.get("/videos/:id", (req, res) => {
+router.get("/:id", (req, res) => {
     console.log(req.params);
 
-    const selectedVideo = videos.find((video) => video.id === req.params.videoId);
+    const selectedVideo = videos.find((video) => video.id === req.params.id);
 
+    if (!selectedVideo) {
+        return res.status(404).send("Video not found");
+    }
+    
     res.json(selectedVideo);
 })
 
