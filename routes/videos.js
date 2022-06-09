@@ -20,10 +20,31 @@ router.get("/", (req, res) => {
     res.json(listedVideos);
 })
 
-router.post("/videos", (req, res) => {
+router.post("/", (req, res) => {
     console.log(req.body);
 
-    const newVideo = {...req.body, id: uuid()};
+    let { title, description } = req.body;
+
+    const newVideo = {
+        ...req.body,
+        id: uuid(),
+        title,
+        description,
+        image: "http://localhost:8080/images/Upload-video-preview.jpg",
+        timestamp: new Date(),
+        channel: "BrainStation",
+        duration: "2:22",
+        views: "1",
+        likes: "1",
+        comments: [
+            {
+                "name":"Jane Doe",
+                "comment":"Best video ever!",
+                "likes":3,
+                "timestamp":new Date()
+            }
+        ]
+    };
     console.log(newVideo);
 
     const allVideos = [...videos, newVideo];
