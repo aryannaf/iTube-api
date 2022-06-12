@@ -21,7 +21,6 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-    console.log(req.body);
 
     let { title, description } = req.body;
 
@@ -45,7 +44,6 @@ router.post("/", (req, res) => {
             }
         ]
     };
-    console.log(newVideo);
 
     const allVideos = [...videos, newVideo];
 
@@ -56,7 +54,6 @@ router.post("/", (req, res) => {
 
 
 router.get("/:id", (req, res) => {
-    console.log(req.params);
 
     const selectedVideo = videos.find((video) => video.id === req.params.id);
 
