@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
         description,
         image: "http://localhost:8080/images/Upload-video-preview.jpg",
         timestamp: new Date(),
-        channel: "BrainStation",
+        channel: "CoolChannel",
         duration: "2:22",
         views: "1",
         likes: "1",
